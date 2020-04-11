@@ -1,4 +1,4 @@
-const covid19ImpactEstimator = (data) => {
+exports.covid19ImpactEstimator = (data) => {
   function estimateImpactCurrentlyInfectedPeople() {
     const { reportedCases } = data;
     return reportedCases * 10;
@@ -99,6 +99,3 @@ const covid19ImpactEstimator = (data) => {
   };
 };
 
-module.exports = {
-  covid: covid19ImpactEstimator
-};
