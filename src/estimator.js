@@ -98,4 +98,3 @@ exports.covid19ImpactEstimator = (data) => {
 
   };
 };
-
