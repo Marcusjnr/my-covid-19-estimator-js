@@ -8,7 +8,7 @@ const logs = {
   log_data: []
 };
 
-router.get('/api/v1/on-covid-19', async (req, res) => {
+router.post('/api/v1/on-covid-19', async (req, res) => {
   const start = new Date();
   res.send(covid19ImpactEstimator(req.body));
   req.on('close', (() => {
@@ -26,7 +26,7 @@ router.get('/api/v1/on-covid-19', async (req, res) => {
   }));
 });
 
-router.get('/api/v1/on-covid-19/json', async (req, res) => {
+router.post('/api/v1/on-covid-19/json', async (req, res) => {
   const start = new Date();
   res.send(covid19ImpactEstimator(req.body));
   req.on('close', (() => {
