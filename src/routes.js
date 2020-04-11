@@ -2,7 +2,7 @@ const express = require('express');
 
 const router = express.Router();
 const fs = require('fs');
-const { covid19ImpactEstimator } = require('./estimator');
+const covid19ImpactEstimator = require('./estimator');
 
 const logs = {
   log_data: []
