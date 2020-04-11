@@ -72,7 +72,7 @@ const covid19ImpactEstimator = (data) => {
     const dailyIncomePopulation = data.region.avgDailyIncomePopulation;
     const { timeToElapse, periodType } = data;
     const result = (infectionsByRequestedTime(whichImpact) * dailyIncomeUsd
-            * dailyIncomePopulation) / changePeriodType(periodType, timeToElapse);
+        * dailyIncomePopulation) / changePeriodType(periodType, timeToElapse);
     return Math.trunc((result * 100) / 100);
   }
   return {
@@ -99,4 +99,6 @@ const covid19ImpactEstimator = (data) => {
   };
 };
 
-module.exports = covid19ImpactEstimator;
+module.exports = {
+  covid19ImpactEstimator
+};
