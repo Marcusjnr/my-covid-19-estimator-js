@@ -2,7 +2,7 @@ const express = require('express');
 
 const router = express.Router();
 const fs = require('fs');
-const { covid19ImpactEstimator } = require('./estimator');
+const { covid } = require('./estimator');
 
 const logs = {
   log_data: []
@@ -10,7 +10,7 @@ const logs = {
 
 router.get('/api/v1/on-covid-19', async (req, res) => {
   const start = new Date();
-  res.send(covid19ImpactEstimator(req.body));
+  res.send(covid(req.body));
   req.on('close', (() => {
     const stop = new Date();
     logs.log_data.push({
@@ -28,7 +28,7 @@ router.get('/api/v1/on-covid-19', async (req, res) => {
 
 router.get('/api/v1/on-covid-19/json', async (req, res) => {
   const start = new Date();
-  res.send(covid19ImpactEstimator(req.body));
+  res.send(covid(req.body));
   req.on('close', (() => {
     const stop = new Date();
     logs.log_data.push({
