@@ -99,6 +99,4 @@ const covid19ImpactEstimator = (data) => {
   };
 };
 
-module.exports = {
-  covid19ImpactEstimator
-};
+module.exports = covid19ImpactEstimator;
