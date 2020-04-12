@@ -53,7 +53,7 @@ router.post('/api/v1/on-covid-19/json', async (req, res) => {
 router.post('/api/v1/on-covid-19/xml', async (req, res) => {
   const start = new Date();
   const estimateXml = js2xmlparser.parse('root', covid19ImpactEstimator(req.body));
-  res.send(estimateXml);
+  res.type('application/xml').send(estimateXml);
   req.on('close', (() => {
     const stop = new Date();
     logs.log_data.push({
