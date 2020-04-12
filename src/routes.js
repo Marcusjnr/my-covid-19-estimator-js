@@ -96,12 +96,23 @@ router.get('/api/v1/on-covid-19/logs', async (req, res) => {
     } else {
       const obj = JSON.parse(data);// now it an object
       const jsonObj = obj.log_data;
-      jsonObj.forEach((key) => {
-        st = returnString.concat(`${key.request}\t\t${key.url}\t\t${key.status}\t\t${key.time}${key.milString}\n`);
-        strArray.push(st);
-      });
-      const newString = strArray.toString().replace(/\r|,/g, '');
-      res.type('application/txt').send(newString);
+      if (jsonObj == null) {
+        logs.log_data.push({
+          request: 'GET',
+          url: '/api/v1/on-covid-19/logs',
+          status: 200,
+          time: '01',
+          milString: 'ms'
+        });
+        res.type('application/txt').send('GET\t\t/api/v1/on-covid-19/logs\t\t200\t\t01ms');
+      } else {
+        jsonObj.forEach((key) => {
+          st = returnString.concat(`${key.request}\t\t${key.url}\t\t${key.status}\t\t${key.time}${key.milString}\n`);
+          strArray.push(st);
+        });
+        const newString = strArray.toString().replace(/\r|,/g, '');
+        res.type('application/txt').send(newString);
+      }
     }
     req.on('close', (() => {
       const stop = new Date();
