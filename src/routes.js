@@ -17,7 +17,7 @@ router.post('/api/v1/on-covid-19', async (req, res) => {
   req.on('close', (() => {
     const stop = new Date();
     logs.log_data.push({
-      request: 'GET',
+      request: 'POST',
       url: '/api/v1/on-covid-19',
       status: 200,
       time: `${stop - start}`,
@@ -36,7 +36,7 @@ router.post('/api/v1/on-covid-19/json', async (req, res) => {
   req.on('close', (() => {
     const stop = new Date();
     logs.log_data.push({
-      request: 'GET',
+      request: 'POST',
       url: '/api/v1/on-covid-19/json',
       status: 200,
       time: `${stop - start}`,
@@ -57,7 +57,7 @@ router.post('/api/v1/on-covid-19/xml', async (req, res) => {
   req.on('close', (() => {
     const stop = new Date();
     logs.log_data.push({
-      request: 'GET',
+      request: 'POST',
       url: '/api/v1/on-covid-19/xml',
       status: 200,
       time: `${stop - start}`,
@@ -81,7 +81,7 @@ router.get('/api/v1/on-covid-19/logs', async (req, res) => {
       const obj = JSON.parse(data);// now it an object
       const jsonObj = obj.log_data;
       jsonObj.forEach((key) => {
-        st = returnString.concat(`${key.request} \t\t ${key.url} \t\t ${key.status} \t\t ${key.time} \t\t ${key.milString} \n`);
+        st = returnString.concat(`"${key.request} \t\t ${key.url} \t\t ${key.status} \t\t ${key.time} \t\t ${key.milString}" \n`);
         strArray.push(st);
       });
       const newString = strArray.toString().replace(/\r|,/g, '');
