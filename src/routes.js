@@ -16,11 +16,16 @@ router.post('/api/v1/on-covid-19', async (req, res) => {
   res.send(covid19ImpactEstimator(req.body));
   req.on('close', (() => {
     const stop = new Date();
+    let time = stop - start;
+    if (time < 10) {
+      time = `0${time}`;
+      parseInt(time, 10);
+    }
     logs.log_data.push({
       request: 'POST',
       url: '/api/v1/on-covid-19',
       status: 200,
-      time: `${stop - start}`,
+      time: `${time}`,
       milString: 'ms'
     });
     const json = JSON.stringify(logs);
@@ -35,11 +40,16 @@ router.post('/api/v1/on-covid-19/json', async (req, res) => {
   res.send(covid19ImpactEstimator(req.body));
   req.on('close', (() => {
     const stop = new Date();
+    let time = stop - start;
+    if (time < 10) {
+      time = `0${time}`;
+      parseInt(time, 10);
+    }
     logs.log_data.push({
       request: 'POST',
       url: '/api/v1/on-covid-19/json',
       status: 200,
-      time: `${stop - start}`,
+      time: `${time}`,
       milString: 'ms'
     });
     const json = JSON.stringify(logs);
@@ -56,11 +66,16 @@ router.post('/api/v1/on-covid-19/xml', async (req, res) => {
   res.type('application/xml').send(estimateXml);
   req.on('close', (() => {
     const stop = new Date();
+    let time = stop - start;
+    if (time < 10) {
+      time = `0${time}`;
+      parseInt(time, 10);
+    }
     logs.log_data.push({
       request: 'POST',
       url: '/api/v1/on-covid-19/xml',
       status: 200,
-      time: `${stop - start}`,
+      time: `${time}`,
       milString: 'ms'
     });
     const json = JSON.stringify(logs);
@@ -81,7 +96,7 @@ router.get('/api/v1/on-covid-19/logs', async (req, res) => {
       const obj = JSON.parse(data);// now it an object
       const jsonObj = obj.log_data;
       jsonObj.forEach((key) => {
-        st = returnString.concat(`${key.request} \t\t ${key.url} \t\t ${key.status} \t\t ${key.time} \t\t ${key.milString} \n`);
+        st = returnString.concat(`${key.request} \t\t ${key.url} \t\t ${key.status} \t\t ${key.time}${key.milString} \n`);
         strArray.push(st);
       });
       const newString = strArray.toString().replace(/\r|,/g, '');
