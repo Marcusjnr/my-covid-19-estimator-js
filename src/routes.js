@@ -96,7 +96,7 @@ router.get('/api/v1/on-covid-19/logs', async (req, res) => {
       const obj = JSON.parse(data);// now it an object
       const jsonObj = obj.log_data;
       jsonObj.forEach((key) => {
-        st = returnString.concat(`${key.request} \t\t ${key.url} \t\t ${key.status} \t\t ${key.time}${key.milString} \n`);
+        st = returnString.concat(`${key.request}\t\t${key.url}\t\t${key.status}\t\t${key.time}${key.milString}\n`);
         strArray.push(st);
       });
       const newString = strArray.toString().replace(/\r|,/g, '');
