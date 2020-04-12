@@ -44,24 +44,6 @@ router.post('/api/v1/on-covid-19/json', async (req, res) => {
   }));
 });
 
-router.get('/api/v1/on-covid-19/json', async (req, res) => {
-  const start = new Date();
-  res.send(covid19ImpactEstimator(req.body));
-  req.on('close', (() => {
-    const stop = new Date();
-    logs.log_data.push({
-      request: 'GET',
-      url: '/api/v1/on-covid-19/json',
-      status: 200,
-      time: stop - start
-    });
-    const json = JSON.stringify(logs);
-    fs.writeFile('./src/log.json', json, 'utf8', (() => {
-
-    }));
-  }));
-});
-
 
 // app.get('/api/v1/on-covid-19/xml', async (req, res) => {
 //   const start = new Date();
