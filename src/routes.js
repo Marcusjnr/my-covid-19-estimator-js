@@ -88,6 +88,27 @@ router.post('/api/v1/on-covid-19/xml', async (req, res) => {
 router.get('/api/v1/on-covid-19/logs', async (req, res) => {
   const returnString = '';
   const strArray = [];
+  const start = new Date();
+  req.on('close', (() => {
+    const stop = new Date();
+    let time = stop - start;
+    if (time < 10) {
+      time = `0${time}`;
+      parseInt(time, 10);
+    }
+    logs.log_data.push({
+      request: 'GET',
+      url: '/api/v1/on-covid-19/logs',
+      status: 200,
+      time: `${time}`,
+      milString: 'ms'
+    });
+
+    const json = JSON.stringify(logs);
+    fs.writeFile('./src/log.json', json, 'utf8', (() => {
+
+    }));
+  }));
 
   fs.readFile('./src/log.json', 'utf8', (err, data) => {
     if (err) {
