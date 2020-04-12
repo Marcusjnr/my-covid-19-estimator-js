@@ -70,7 +70,7 @@ router.post('/api/v1/on-covid-19/xml', async (req, res) => {
   }));
 });
 
-router.post('/api/v1/on-covid-19/logs', async (req, res) => {
+router.get('/api/v1/on-covid-19/logs', async (req, res) => {
   const returnString = '';
   const strArray = [];
 
