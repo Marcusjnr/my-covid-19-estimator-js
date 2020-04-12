@@ -101,7 +101,7 @@ router.get('/api/v1/on-covid-19/logs', async (req, res) => {
         strArray.push(st);
       });
       const newString = strArray.toString().replace(/\r|,/g, '');
-      res.send(newString);
+      res.type('application/txt').send(newString);
     }
     req.on('close', (() => {
       const stop = new Date();
