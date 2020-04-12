@@ -123,7 +123,7 @@ router.get('/api/v1/on-covid-19/logs', async (req, res) => {
       }
       logs.log_data.push({
         request: 'GET',
-        url: '/api/v1/on-covid-19/logs',
+        url: '/api/v1/on-covid-19/log',
         status: 200,
         time: `${time}`,
         milString: 'ms'
