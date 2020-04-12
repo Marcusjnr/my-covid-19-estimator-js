@@ -11,7 +11,7 @@ const logs = {
 
 router.post('/api/v1/on-covid-19', async (req, res) => {
   const start = new Date();
-  res.send(JSON.stringify(covid19ImpactEstimator(req.body)));
+  res.send(covid19ImpactEstimator(req.body));
   req.on('close', (() => {
     const stop = new Date();
     logs.log_data.push({
@@ -29,7 +29,7 @@ router.post('/api/v1/on-covid-19', async (req, res) => {
 
 router.post('/api/v1/on-covid-19/json', async (req, res) => {
   const start = new Date();
-  res.send(JSON.stringify(covid19ImpactEstimator(req.body)));
+  res.send(covid19ImpactEstimator(req.body));
   req.on('close', (() => {
     const stop = new Date();
     logs.log_data.push({
